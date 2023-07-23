@@ -75,7 +75,7 @@ app.use(session({
     },
     store: new MongoStore(
         {
-            mongoUrl:'mongodb://127.0.0.1:27017/codeial_development', 
+            mongoUrl:'mongodb://localhost/codeial_development', 
             autoRemove: 'disabled'
         
         },
