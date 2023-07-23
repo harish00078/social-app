@@ -5,9 +5,9 @@
   border: 1px dashed grey;
   height: 350px;
   width: 300px;
-  background: white;
+  background: black;
   padding: 5px;
-  box-shadow: 1px 1px 1px 1px lightgrey; }
+  box-shadow: 1px 2px 1px 2px lightblue; }
   #user-chat-box #chat-messages-list {
     list-style: none;
     padding: 10px;
@@ -35,7 +35,9 @@
     flex-direction: row; }
     #user-chat-box #chat-message-input-container #chat-message-input {
       height: 50%;
-      width: 70%; }
+      width: 70%;
+      background-color: black;
+      color: white; }
     #user-chat-box #chat-message-input-container #send-message {
       height: 50%;
       width: 30%;
@@ -43,3 +45,5 @@
       color: white;
       border: none;
       background: #58d258; }
+    #user-chat-box #chat-message-input-container #send-message:hover {
+      cursor: pointer; }
