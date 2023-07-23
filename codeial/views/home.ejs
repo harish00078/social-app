@@ -32,11 +32,7 @@
             <% } %>
         </section>
 
-        <!-- here we are adding the (chat-box) in the (home-page): -->
-        <%- include('_chat_box') -%>
-
-
-
+    <%- include('_chat_box') -%>
 </div>
 
 <!-- importing this script for creating the comments -->
@@ -51,25 +47,10 @@
         let toggleLike = new ToggleLike(self);
     });
 </script>
-
-
-<!-- here we are connecting the (socket.io) with the (client) or we can say with the (home-page) of that (client):
-=> with the help of the (cdnjs)file of the (socket) library: -->
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.1/socket.io.js"></script>
-
-<!-- and we are also connecting that client or we can say its home-page:with the (file) were we have  written the (socket) function for the (client) side: -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
 <script src="/js/chat_engine.js"></script>
-
-<!-- here we are putting the socket (client) side function or class: In the (home-page) that we have created: -->
-<!-- we only gave the chat-box to the (user):if its logged in: -->
-<!-- here we are giving the (chat-boxID) or the (user-data) to the (chat_engine) class constructor:that we have created for the (client-side):this  (chat-boxId) we will get from the(sever-side):chat-box -->
-
 <% if (locals.user){ %>
 <script>
-
-    new ChatEngine('user-chat-box','<%= locals.user.email %>');
-
+    new ChatEngine('user-chat-box', '<%= locals.user.email %>')
 </script>
 <% } %>
-

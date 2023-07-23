@@ -11,38 +11,25 @@ const passportLocal = require('./config/passport-local-strategy');
 const passportJWT = require('./config/passport-jwt-strategy');
 const passportGoogle = require('./config/passport-google-oauth2-strategy');
 
-const MongoStore = require('connect-mongo');
-// const sassMiddleware = require('node-sass-middleware');
+const MongoStore = require('connect-mongo')(session);
+const sassMiddleware = require('node-sass-middleware');
 const flash = require('connect-flash');
 const customMware = require('./config/middleware');
 
-// here we are connecting the (socket-io) with our app-server:
-// so that (socket-io) know about the server:to which it has connect with:
-
-// here we setup the (chat-server) to be used with  (socket-io):
-
-// => here we have our (server):
-// these (http) and (server) are the (inbuilt) methods in the (nodejs) through  which we can get our (server):
+// setup the chat server to be used with socket.io
 const chatServer = require('http').Server(app);
-
-// => and here we are connecting the (socket.io) configuration with the (server):so that it knows about which (server) it has to connect with:
-// or we can say here we are connecting the (chatSockets) function that we have created under in the (chat_sockets) configuration file:with the (server):
 const chatSockets = require('./config/chat_sockets').chatSockets(chatServer);
-
-// => and we also have to gave the different port to the (socket):or we can say to the (chat-server):
 chatServer.listen(5000);
-console.log('chat server listening on port 5000');
+console.log('chat server is listening on port 5000');
 
 
-
-
-// app.use(sassMiddleware({
-//     src: './assets/scss',
-//     dest: './assets/css',
-//     debug: true,
-//     outputStyle: 'extended',
-//     prefix: '/css'
-// }));
+app.use(sassMiddleware({
+    src: './assets/scss',
+    dest: './assets/css',
+    debug: true,
+    outputStyle: 'extended',
+    prefix: '/css'
+}));
 app.use(express.urlencoded());
 
 app.use(cookieParser());
@@ -75,7 +62,7 @@ app.use(session({
     },
     store: new MongoStore(
         {
-            mongoUrl:'mongodb://127.0.0.1:27017/codeial_development', 
+            mongooseConnection: db,
             autoRemove: 'disabled'
         
         },
